@@ -76,9 +76,11 @@
         <div class="footer-content">
             <p>&copy; 2025 Jole Blog. All rights reserved.</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/Eng_Levis?t=3G3wMtqJldUuUtHSH6ymfg&s=08" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="www.linkedin.com/in/levis-rabah-8242a6304
+
+                " aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/levisrabah" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </footer>
@@ -91,6 +93,39 @@
             alert('Thank you for your message! We\'ll get back to you soon.');
             this.reset();
         });
+
+        // Theme toggle functionality
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (!themeToggle) return;
+            
+            const icon = themeToggle.querySelector('i');
+            const savedTheme = localStorage.getItem('theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            if (savedTheme === 'dark') {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                if (newTheme === 'dark') {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', setupThemeToggle);
     </script>
 </body>
 </html>
